@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Results · Campus Unified</title>
+  <link rel="stylesheet" href="css/main.css" />
+  <link rel="stylesheet" href="css/dashboard.css" />
+  <link rel="stylesheet" href="css/results.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
+<body class="app-body">
+
+  <aside class="sidebar" id="sidebar">
+    <div class="sidebar-brand"><i class="fa-solid fa-graduation-cap"></i><span>Campus<b>Unified</b></span></div>
+    <nav class="sidebar-nav">
+      <a href="dashboard.html" class="nav-item"><i class="fa-solid fa-house"></i><span>Dashboard</span></a>
+      <a href="attendance.html" class="nav-item"><i class="fa-solid fa-calendar-check"></i><span>Attendance</span></a>
+      <a href="results.html" class="nav-item active"><i class="fa-solid fa-chart-bar"></i><span>Results</span></a>
+      <a href="approvals.html" class="nav-item"><i class="fa-solid fa-file-signature"></i><span>Approvals</span></a>
+      <a href="notes.html" class="nav-item"><i class="fa-solid fa-book-open"></i><span>Notes</span></a>
+      <a href="events.html" class="nav-item"><i class="fa-solid fa-calendar-star"></i><span>Events</span></a>
+      <a href="calendar.html" class="nav-item"><i class="fa-solid fa-calendar-days"></i><span>Calendar</span></a>
+    </nav>
+    <div class="sidebar-footer"><button class="logout-btn" onclick="logout()"><i class="fa-solid fa-right-from-bracket"></i><span>Logout</span></button></div>
+  </aside>
+  <div class="sidebar-overlay" id="sidebarOverlay" onclick="toggleSidebar()"></div>
+
+  <main class="main-content">
+    <header class="topnav">
+      <button class="hamburger" onclick="toggleSidebar()"><i class="fa-solid fa-bars"></i></button>
+      <div class="topnav-title">Results</div>
+      <div class="topnav-right">
+        <div class="notif-btn"><i class="fa-solid fa-bell"></i><span class="notif-dot"></span></div>
+        <div class="avatar-mini" id="avatarMini">--</div>
+      </div>
+    </header>
+
+    <div class="page-content">
+      <div class="greeting-row">
+        <div><h2 class="greeting-text">Academic Results</h2><p class="greeting-sub">Your performance at a glance</p></div>
+      </div>
+
+      <!-- Results Selection -->
+      <div id="resultsHome">
+        <div class="result-choice-grid">
+          <div class="result-choice-card card-green" onclick="showSection('internals')">
+            <div class="rc-icon"><i class="fa-solid fa-pen-to-square"></i></div>
+            <h3>Internal Assessment</h3>
+            <p>Subject-wise IA marks, CIE scores, and assignments</p>
+            <span class="rc-badge">IA Marks</span>
+          </div>
+          <div class="result-choice-card card-blue" onclick="showSection('semester')">
+            <div class="rc-icon"><i class="fa-solid fa-graduation-cap"></i></div>
+            <h3>Semester Results</h3>
+            <p>End semester exam marks, GPA & SGPA</p>
+            <span class="rc-badge">Sem Results</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Internals Section -->
+      <div id="internalsSection" class="hidden">
+        <div class="back-row"><button class="back-btn" onclick="showSection('home')"><i class="fa-solid fa-arrow-left"></i> Back</button><h3 class="section-title">Internal Assessment Marks</h3></div>
+        <div class="ia-tabs">
+          <button class="ia-tab active" onclick="switchIA(0)">IA - 1</button>
+          <button class="ia-tab" onclick="switchIA(1)">IA - 2</button>
+          <button class="ia-tab" onclick="switchIA(2)">IA - 3</button>
+        </div>
+        <div id="iaContent"></div>
+      </div>
+
+      <!-- Semester Section -->
+      <div id="semesterSection" class="hidden">
+        <div class="back-row"><button class="back-btn" onclick="showSection('home')"><i class="fa-solid fa-arrow-left"></i> Back</button><h3 class="section-title">Semester Results</h3></div>
+        <div class="sem-tabs" id="semTabs"></div>
+        <div id="semContent"></div>
+      </div>
+
+    </div>
+  </main>
+
+  <script src="js/data.js"></script>
+  <script src="js/auth.js"></script>
+  <script src="js/results.js"></script>
+</body>
+</html>

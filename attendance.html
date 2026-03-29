@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Attendance · Campus Unified</title>
+  <link rel="stylesheet" href="css/main.css" />
+  <link rel="stylesheet" href="css/dashboard.css" />
+  <link rel="stylesheet" href="css/attendance.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
+<body class="app-body">
+
+  <aside class="sidebar" id="sidebar">
+    <div class="sidebar-brand"><i class="fa-solid fa-graduation-cap"></i><span>Campus<b>Unified</b></span></div>
+    <nav class="sidebar-nav">
+      <a href="dashboard.html" class="nav-item"><i class="fa-solid fa-house"></i><span>Dashboard</span></a>
+      <a href="attendance.html" class="nav-item active"><i class="fa-solid fa-calendar-check"></i><span>Attendance</span></a>
+      <a href="results.html" class="nav-item"><i class="fa-solid fa-chart-bar"></i><span>Results</span></a>
+      <a href="approvals.html" class="nav-item"><i class="fa-solid fa-file-signature"></i><span>Approvals</span></a>
+      <a href="notes.html" class="nav-item"><i class="fa-solid fa-book-open"></i><span>Notes</span></a>
+      <a href="events.html" class="nav-item"><i class="fa-solid fa-calendar-star"></i><span>Events</span></a>
+      <a href="calendar.html" class="nav-item"><i class="fa-solid fa-calendar-days"></i><span>Calendar</span></a>
+    </nav>
+    <div class="sidebar-footer"><button class="logout-btn" onclick="logout()"><i class="fa-solid fa-right-from-bracket"></i><span>Logout</span></button></div>
+  </aside>
+  <div class="sidebar-overlay" id="sidebarOverlay" onclick="toggleSidebar()"></div>
+
+  <main class="main-content">
+    <header class="topnav">
+      <button class="hamburger" onclick="toggleSidebar()"><i class="fa-solid fa-bars"></i></button>
+      <div class="topnav-title">Attendance</div>
+      <div class="topnav-right">
+        <div class="notif-btn"><i class="fa-solid fa-bell"></i><span class="notif-dot"></span></div>
+        <div class="avatar-mini" id="avatarMini">--</div>
+      </div>
+    </header>
+
+    <div class="page-content">
+      <div class="greeting-row">
+        <div><h2 class="greeting-text">Attendance Overview</h2><p class="greeting-sub">Track your academic presence</p></div>
+      </div>
+
+      <!-- Overall Attendance Summary -->
+      <div class="attendance-summary glass-card">
+        <div class="att-circle-wrap">
+          <svg class="att-ring" viewBox="0 0 120 120">
+            <circle cx="60" cy="60" r="50" class="ring-bg"/>
+            <circle cx="60" cy="60" r="50" class="ring-fill" id="overallRing"/>
+          </svg>
+          <div class="att-center-text">
+            <span class="att-percent" id="overallPercent">0%</span>
+            <span class="att-label-sm">Overall</span>
+          </div>
+        </div>
+        <div class="att-stats">
+          <div class="att-stat-item">
+            <i class="fa-solid fa-calendar-days att-icon-blue"></i>
+            <div><span class="att-stat-num" id="totalDays">0</span><span class="att-stat-lbl">Total Days</span></div>
+          </div>
+          <div class="att-stat-item">
+            <i class="fa-solid fa-circle-check att-icon-green"></i>
+            <div><span class="att-stat-num" id="presentDays">0</span><span class="att-stat-lbl">Days Present</span></div>
+          </div>
+          <div class="att-stat-item">
+            <i class="fa-solid fa-circle-xmark att-icon-red"></i>
+            <div><span class="att-stat-num" id="absentDays">0</span><span class="att-stat-lbl">Days Absent</span></div>
+          </div>
+          <div class="att-stat-item">
+            <i class="fa-solid fa-triangle-exclamation att-icon-orange"></i>
+            <div><span class="att-stat-num" id="neededDays">0</span><span class="att-stat-lbl">Need to Attend</span></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Attendance Status Badge -->
+      <div class="att-status-badge" id="attStatusBadge"></div>
+
+      <!-- Subject-wise Attendance -->
+      <h3 class="section-title">Subject-wise Attendance</h3>
+      <div class="subject-att-list" id="subjectAttList">
+        <!-- Populated by JS -->
+      </div>
+    </div>
+  </main>
+
+  <script src="js/data.js"></script>
+  <script src="js/auth.js"></script>
+  <script src="js/attendance.js"></script>
+</body>
+</html>

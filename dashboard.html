@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Dashboard · Campus Unified</title>
+  <link rel="stylesheet" href="css/main.css" />
+  <link rel="stylesheet" href="css/dashboard.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
+<body class="app-body">
+
+  <!-- Sidebar -->
+  <aside class="sidebar" id="sidebar">
+    <div class="sidebar-brand">
+      <i class="fa-solid fa-graduation-cap"></i>
+      <span>Campus<b>Unified</b></span>
+    </div>
+    <nav class="sidebar-nav">
+      <a href="dashboard.html" class="nav-item active"><i class="fa-solid fa-house"></i><span>Dashboard</span></a>
+      <a href="attendance.html" class="nav-item"><i class="fa-solid fa-calendar-check"></i><span>Attendance</span></a>
+      <a href="results.html" class="nav-item"><i class="fa-solid fa-chart-bar"></i><span>Results</span></a>
+      <a href="approvals.html" class="nav-item"><i class="fa-solid fa-file-signature"></i><span>Approvals</span></a>
+      <a href="notes.html" class="nav-item"><i class="fa-solid fa-book-open"></i><span>Notes</span></a>
+      <a href="events.html" class="nav-item"><i class="fa-solid fa-calendar-star"></i><span>Events</span></a>
+      <a href="calendar.html" class="nav-item"><i class="fa-solid fa-calendar-days"></i><span>Calendar</span></a>
+    </nav>
+    <div class="sidebar-footer">
+      <button class="logout-btn" onclick="logout()"><i class="fa-solid fa-right-from-bracket"></i><span>Logout</span></button>
+    </div>
+  </aside>
+
+  <!-- Overlay for mobile -->
+  <div class="sidebar-overlay" id="sidebarOverlay" onclick="toggleSidebar()"></div>
+
+  <!-- Main Content -->
+  <main class="main-content">
+
+    <!-- Top Nav -->
+    <header class="topnav">
+      <button class="hamburger" onclick="toggleSidebar()"><i class="fa-solid fa-bars"></i></button>
+      <div class="topnav-title">Dashboard</div>
+      <div class="topnav-right">
+        <div class="notif-btn"><i class="fa-solid fa-bell"></i><span class="notif-dot"></span></div>
+        <div class="avatar-mini" id="avatarMini">--</div>
+      </div>
+    </header>
+
+    <!-- Page Content -->
+    <div class="page-content">
+
+      <!-- Greeting -->
+      <div class="greeting-row">
+        <div>
+          <h2 class="greeting-text" id="greetingText">Good Morning 👋</h2>
+          <p class="greeting-sub" id="greetingName">Welcome back!</p>
+        </div>
+        <div class="date-chip"><i class="fa-solid fa-calendar"></i> <span id="todayDate"></span></div>
+      </div>
+
+      <!-- Profile Card -->
+      <div class="profile-card glass-card" id="profileCard">
+        <div class="profile-avatar" id="profileAvatar">
+          <span id="avatarInitials">--</span>
+        </div>
+        <div class="profile-info">
+          <h3 id="profileName">Student Name</h3>
+          <p id="profileRoll"><i class="fa-solid fa-id-card"></i> Roll: --</p>
+          <p id="profileDept"><i class="fa-solid fa-building-columns"></i> --</p>
+          <p id="profilePeriod"><i class="fa-solid fa-calendar-alt"></i> --</p>
+        </div>
+        <div class="profile-stats">
+          <div class="stat-item">
+            <span class="stat-val" id="statAttendance">--</span>
+            <span class="stat-label">Attendance</span>
+          </div>
+          <div class="stat-item">
+            <span class="stat-val" id="statCGPA">--</span>
+            <span class="stat-label">CGPA</span>
+          </div>
+          <div class="stat-item">
+            <span class="stat-val" id="statSem">--</span>
+            <span class="stat-label">Semester</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Quick Action Cards Grid -->
+      <h3 class="section-title">Quick Access</h3>
+      <div class="cards-grid">
+
+        <a href="attendance.html" class="action-card card-blue">
+          <div class="card-icon-wrap"><i class="fa-solid fa-calendar-check"></i></div>
+          <div class="card-body-text">
+            <span class="card-title">Attendance</span>
+            <span class="card-sub">Track your presence</span>
+          </div>
+          <div class="card-arrow"><i class="fa-solid fa-chevron-right"></i></div>
+        </a>
+
+        <a href="results.html" class="action-card card-green">
+          <div class="card-icon-wrap"><i class="fa-solid fa-chart-bar"></i></div>
+          <div class="card-body-text">
+            <span class="card-title">Results</span>
+            <span class="card-sub">Marks & GPA</span>
+          </div>
+          <div class="card-arrow"><i class="fa-solid fa-chevron-right"></i></div>
+        </a>
+
+        <a href="approvals.html" class="action-card card-orange">
+          <div class="card-icon-wrap"><i class="fa-solid fa-file-signature"></i></div>
+          <div class="card-body-text">
+            <span class="card-title">Approvals</span>
+            <span class="card-sub">OD & Outpass</span>
+          </div>
+          <div class="card-arrow"><i class="fa-solid fa-chevron-right"></i></div>
+        </a>
+
+        <a href="notes.html" class="action-card card-purple">
+          <div class="card-icon-wrap"><i class="fa-solid fa-book-open"></i></div>
+          <div class="card-body-text">
+            <span class="card-title">Notes</span>
+            <span class="card-sub">Study materials</span>
+          </div>
+          <div class="card-arrow"><i class="fa-solid fa-chevron-right"></i></div>
+        </a>
+
+        <a href="events.html" class="action-card card-red">
+          <div class="card-icon-wrap"><i class="fa-solid fa-calendar-star"></i></div>
+          <div class="card-body-text">
+            <span class="card-title">Events</span>
+            <span class="card-sub">Fests & Hackathons</span>
+          </div>
+          <div class="card-arrow"><i class="fa-solid fa-chevron-right"></i></div>
+        </a>
+
+        <a href="calendar.html" class="action-card card-teal">
+          <div class="card-icon-wrap"><i class="fa-solid fa-calendar-days"></i></div>
+          <div class="card-body-text">
+            <span class="card-title">Academic Calendar</span>
+            <span class="card-sub">Schedule & holidays</span>
+          </div>
+          <div class="card-arrow"><i class="fa-solid fa-chevron-right"></i></div>
+        </a>
+
+      </div>
+
+      <!-- Announcements Ticker -->
+      <div class="announcement-bar">
+        <span class="ann-label"><i class="fa-solid fa-bullhorn"></i> Notice</span>
+        <div class="ann-ticker" id="annTicker">Loading announcements...</div>
+      </div>
+
+    </div>
+  </main>
+
+  <script src="js/data.js"></script>
+  <script src="js/auth.js"></script>
+  <script src="js/dashboard.js"></script>
+</body>
+</html>

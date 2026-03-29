@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Events · Campus Unified</title>
+  <link rel="stylesheet" href="css/main.css" />
+  <link rel="stylesheet" href="css/dashboard.css" />
+  <link rel="stylesheet" href="css/events.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
+<body class="app-body">
+
+  <aside class="sidebar" id="sidebar">
+    <div class="sidebar-brand"><i class="fa-solid fa-graduation-cap"></i><span>Campus<b>Unified</b></span></div>
+    <nav class="sidebar-nav">
+      <a href="dashboard.html" class="nav-item"><i class="fa-solid fa-house"></i><span>Dashboard</span></a>
+      <a href="attendance.html" class="nav-item"><i class="fa-solid fa-calendar-check"></i><span>Attendance</span></a>
+      <a href="results.html" class="nav-item"><i class="fa-solid fa-chart-bar"></i><span>Results</span></a>
+      <a href="approvals.html" class="nav-item"><i class="fa-solid fa-file-signature"></i><span>Approvals</span></a>
+      <a href="notes.html" class="nav-item"><i class="fa-solid fa-book-open"></i><span>Notes</span></a>
+      <a href="events.html" class="nav-item active"><i class="fa-solid fa-calendar-star"></i><span>Events</span></a>
+      <a href="calendar.html" class="nav-item"><i class="fa-solid fa-calendar-days"></i><span>Calendar</span></a>
+    </nav>
+    <div class="sidebar-footer"><button class="logout-btn" onclick="logout()"><i class="fa-solid fa-right-from-bracket"></i><span>Logout</span></button></div>
+  </aside>
+  <div class="sidebar-overlay" id="sidebarOverlay" onclick="toggleSidebar()"></div>
+
+  <main class="main-content">
+    <header class="topnav">
+      <button class="hamburger" onclick="toggleSidebar()"><i class="fa-solid fa-bars"></i></button>
+      <div class="topnav-title">Events</div>
+      <div class="topnav-right">
+        <div class="notif-btn"><i class="fa-solid fa-bell"></i><span class="notif-dot"></span></div>
+        <div class="avatar-mini" id="avatarMini">--</div>
+      </div>
+    </header>
+
+    <div class="page-content">
+      <div class="greeting-row">
+        <div><h2 class="greeting-text">Campus Events</h2><p class="greeting-sub">Stay updated with everything happening on campus</p></div>
+      </div>
+
+      <!-- Event Category Filters -->
+      <div class="event-filter-row">
+        <button class="evt-filter active" onclick="filterEvents('all',this)"><i class="fa-solid fa-grid-2"></i> All</button>
+        <button class="evt-filter" onclick="filterEvents('hackathon',this)"><i class="fa-solid fa-code"></i> Hackathons</button>
+        <button class="evt-filter" onclick="filterEvents('fest',this)"><i class="fa-solid fa-music"></i> Fests</button>
+        <button class="evt-filter" onclick="filterEvents('technical',this)"><i class="fa-solid fa-microchip"></i> Technical</button>
+        <button class="evt-filter" onclick="filterEvents('workshop',this)"><i class="fa-solid fa-chalkboard-teacher"></i> Workshops</button>
+      </div>
+
+      <!-- Featured Event Banner -->
+      <div class="featured-event glass-card" id="featuredEvent"></div>
+
+      <!-- Events Grid -->
+      <div class="events-grid" id="eventsGrid"></div>
+
+    </div>
+  </main>
+
+  <script src="js/data.js"></script>
+  <script src="js/auth.js"></script>
+  <script src="js/events.js"></script>
+</body>
+</html>

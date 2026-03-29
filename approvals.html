@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Approvals · Campus Unified</title>
+  <link rel="stylesheet" href="css/main.css" />
+  <link rel="stylesheet" href="css/dashboard.css" />
+  <link rel="stylesheet" href="css/approvals.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
+<body class="app-body">
+
+  <aside class="sidebar" id="sidebar">
+    <div class="sidebar-brand"><i class="fa-solid fa-graduation-cap"></i><span>Campus<b>Unified</b></span></div>
+    <nav class="sidebar-nav">
+      <a href="dashboard.html" class="nav-item"><i class="fa-solid fa-house"></i><span>Dashboard</span></a>
+      <a href="attendance.html" class="nav-item"><i class="fa-solid fa-calendar-check"></i><span>Attendance</span></a>
+      <a href="results.html" class="nav-item"><i class="fa-solid fa-chart-bar"></i><span>Results</span></a>
+      <a href="approvals.html" class="nav-item active"><i class="fa-solid fa-file-signature"></i><span>Approvals</span></a>
+      <a href="notes.html" class="nav-item"><i class="fa-solid fa-book-open"></i><span>Notes</span></a>
+      <a href="events.html" class="nav-item"><i class="fa-solid fa-calendar-star"></i><span>Events</span></a>
+      <a href="calendar.html" class="nav-item"><i class="fa-solid fa-calendar-days"></i><span>Calendar</span></a>
+    </nav>
+    <div class="sidebar-footer"><button class="logout-btn" onclick="logout()"><i class="fa-solid fa-right-from-bracket"></i><span>Logout</span></button></div>
+  </aside>
+  <div class="sidebar-overlay" id="sidebarOverlay" onclick="toggleSidebar()"></div>
+
+  <main class="main-content">
+    <header class="topnav">
+      <button class="hamburger" onclick="toggleSidebar()"><i class="fa-solid fa-bars"></i></button>
+      <div class="topnav-title">Approvals</div>
+      <div class="topnav-right">
+        <div class="notif-btn"><i class="fa-solid fa-bell"></i><span class="notif-dot"></span></div>
+        <div class="avatar-mini" id="avatarMini">--</div>
+      </div>
+    </header>
+
+    <div class="page-content">
+      <div class="greeting-row">
+        <div><h2 class="greeting-text">Approvals</h2><p class="greeting-sub">Manage your OD and outpass requests</p></div>
+      </div>
+
+      <!-- Approval Type Selection -->
+      <div id="approvalsHome">
+        <div class="approval-choice-grid">
+          <div class="approval-choice-card card-orange" onclick="showApproval('od')">
+            <div class="ac-icon"><i class="fa-solid fa-briefcase"></i></div>
+            <h3>On-Duty Approval</h3>
+            <p>Track OD requests for events, internships, and official duties</p>
+            <div class="ac-count" id="odCount">-- Requests</div>
+          </div>
+          <div class="approval-choice-card card-teal" onclick="showApproval('outpass')">
+            <div class="ac-icon"><i class="fa-solid fa-door-open"></i></div>
+            <h3>Outpass Approval</h3>
+            <p>Track leave and outpass requests from campus</p>
+            <div class="ac-count" id="outpassCount">-- Requests</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- OD Approvals -->
+      <div id="odSection" class="hidden">
+        <div class="back-row">
+          <button class="back-btn" onclick="showApproval('home')"><i class="fa-solid fa-arrow-left"></i> Back</button>
+          <h3 class="section-title">On-Duty Requests</h3>
+          <button class="new-req-btn" onclick="showNewRequestModal('od')"><i class="fa-solid fa-plus"></i> New Request</button>
+        </div>
+        <div class="approval-filter-tabs">
+          <button class="filter-tab active" onclick="filterApprovals('od','all',this)">All</button>
+          <button class="filter-tab" onclick="filterApprovals('od','Approved',this)">Approved</button>
+          <button class="filter-tab" onclick="filterApprovals('od','Pending',this)">Pending</button>
+          <button class="filter-tab" onclick="filterApprovals('od','Rejected',this)">Rejected</button>
+        </div>
+        <div id="odList"></div>
+      </div>
+
+      <!-- Outpass Approvals -->
+      <div id="outpassSection" class="hidden">
+        <div class="back-row">
+          <button class="back-btn" onclick="showApproval('home')"><i class="fa-solid fa-arrow-left"></i> Back</button>
+          <h3 class="section-title">Outpass Requests</h3>
+          <button class="new-req-btn" onclick="showNewRequestModal('outpass')"><i class="fa-solid fa-plus"></i> New Request</button>
+        </div>
+        <div class="approval-filter-tabs">
+          <button class="filter-tab active" onclick="filterApprovals('outpass','all',this)">All</button>
+          <button class="filter-tab" onclick="filterApprovals('outpass','Approved',this)">Approved</button>
+          <button class="filter-tab" onclick="filterApprovals('outpass','Pending',this)">Pending</button>
+          <button class="filter-tab" onclick="filterApprovals('outpass','Rejected',this)">Rejected</button>
+        </div>
+        <div id="outpassList"></div>
+      </div>
+
+    </div>
+  </main>
+
+  <!-- New Request Modal -->
+  <div class="modal-backdrop hidden" id="modalBackdrop">
+    <div class="modal-card glass-card">
+      <div class="modal-header">
+        <h3 id="modalTitle">New Request</h3>
+        <button onclick="closeModal()"><i class="fa-solid fa-xmark"></i></button>
+      </div>
+      <div class="modal-body">
+        <div class="input-group"><label>Date</label><input type="date" id="reqDate" /></div>
+        <div class="input-group"><label>Reason</label><textarea id="reqReason" rows="3" placeholder="Enter reason..."></textarea></div>
+      </div>
+      <div class="modal-footer">
+        <button class="cancel-btn" onclick="closeModal()">Cancel</button>
+        <button class="submit-btn" onclick="submitRequest()">Submit Request</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="js/data.js"></script>
+  <script src="js/auth.js"></script>
+  <script src="js/approvals.js"></script>
+</body>
+</html>

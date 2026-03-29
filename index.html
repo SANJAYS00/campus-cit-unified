@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Campus Unified Platform</title>
+  <link rel="stylesheet" href="css/main.css" />
+  <link rel="stylesheet" href="css/login.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
+<body class="login-body">
+
+  <!-- Animated Background -->
+  <div class="bg-orbs">
+    <div class="orb orb-1"></div>
+    <div class="orb orb-2"></div>
+    <div class="orb orb-3"></div>
+  </div>
+
+  <!-- Login Container -->
+  <div class="login-wrapper">
+    <div class="login-card glass">
+
+      <!-- Logo & Brand -->
+      <div class="login-header">
+        <div class="brand-icon">
+          <i class="fa-solid fa-graduation-cap"></i>
+        </div>
+        <h1 class="brand-name">Campus<span>Unified</span></h1>
+        <p class="brand-tagline">Your academic world, simplified.</p>
+      </div>
+
+      <!-- Login Form -->
+      <form class="login-form" id="loginForm">
+        <div class="input-group">
+          <label for="rollNumber"><i class="fa-solid fa-id-card"></i> Roll Number</label>
+          <input type="text" id="rollNumber" placeholder="e.g. 21CS101" autocomplete="off" />
+          <span class="input-line"></span>
+        </div>
+
+        <div class="input-group">
+          <label for="password"><i class="fa-solid fa-lock"></i> Password</label>
+          <div class="pass-wrap">
+            <input type="password" id="password" placeholder="Enter your password" />
+            <button type="button" class="toggle-pass" onclick="togglePassword()">
+              <i class="fa-solid fa-eye" id="eyeIcon"></i>
+            </button>
+          </div>
+          <span class="input-line"></span>
+        </div>
+
+        <div class="login-options">
+          <label class="remember-me">
+            <input type="checkbox" id="rememberMe" />
+            <span>Remember me</span>
+          </label>
+          <a href="#" class="forgot-link">Forgot password?</a>
+        </div>
+
+        <button type="submit" class="login-btn" id="loginBtn">
+          <span class="btn-text">Sign In</span>
+          <span class="btn-loader hidden"><i class="fa-solid fa-spinner fa-spin"></i></span>
+          <i class="fa-solid fa-arrow-right btn-arrow"></i>
+        </button>
+
+        <p class="login-error hidden" id="loginError">
+          <i class="fa-solid fa-circle-exclamation"></i> Invalid roll number or password.
+        </p>
+      </form>
+
+      <!-- Demo Hint -->
+      <div class="demo-hint">
+        <p>Demo: Roll <strong>21CS101</strong> · Pass <strong>student123</strong></p>
+      </div>
+    </div>
+  </div>
+
+  <script src="js/data.js"></script>
+  <script src="js/auth.js"></script>
+</body>
+</html>

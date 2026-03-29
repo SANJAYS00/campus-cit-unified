@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Academic Calendar · Campus Unified</title>
+  <link rel="stylesheet" href="css/main.css" />
+  <link rel="stylesheet" href="css/dashboard.css" />
+  <link rel="stylesheet" href="css/calendar.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
+<body class="app-body">
+
+  <aside class="sidebar" id="sidebar">
+    <div class="sidebar-brand"><i class="fa-solid fa-graduation-cap"></i><span>Campus<b>Unified</b></span></div>
+    <nav class="sidebar-nav">
+      <a href="dashboard.html" class="nav-item"><i class="fa-solid fa-house"></i><span>Dashboard</span></a>
+      <a href="attendance.html" class="nav-item"><i class="fa-solid fa-calendar-check"></i><span>Attendance</span></a>
+      <a href="results.html" class="nav-item"><i class="fa-solid fa-chart-bar"></i><span>Results</span></a>
+      <a href="approvals.html" class="nav-item"><i class="fa-solid fa-file-signature"></i><span>Approvals</span></a>
+      <a href="notes.html" class="nav-item"><i class="fa-solid fa-book-open"></i><span>Notes</span></a>
+      <a href="events.html" class="nav-item"><i class="fa-solid fa-calendar-star"></i><span>Events</span></a>
+      <a href="calendar.html" class="nav-item active"><i class="fa-solid fa-calendar-days"></i><span>Calendar</span></a>
+    </nav>
+    <div class="sidebar-footer"><button class="logout-btn" onclick="logout()"><i class="fa-solid fa-right-from-bracket"></i><span>Logout</span></button></div>
+  </aside>
+  <div class="sidebar-overlay" id="sidebarOverlay" onclick="toggleSidebar()"></div>
+
+  <main class="main-content">
+    <header class="topnav">
+      <button class="hamburger" onclick="toggleSidebar()"><i class="fa-solid fa-bars"></i></button>
+      <div class="topnav-title">Academic Calendar</div>
+      <div class="topnav-right">
+        <div class="notif-btn"><i class="fa-solid fa-bell"></i><span class="notif-dot"></span></div>
+        <div class="avatar-mini" id="avatarMini">--</div>
+      </div>
+    </header>
+
+    <div class="page-content">
+      <div class="greeting-row">
+        <div><h2 class="greeting-text">Academic Calendar</h2><p class="greeting-sub">Semester schedule, exams & holidays</p></div>
+      </div>
+
+      <div class="cal-layout">
+        <!-- Calendar Widget -->
+        <div class="cal-main glass-card">
+          <div class="cal-nav">
+            <button onclick="changeMonth(-1)"><i class="fa-solid fa-chevron-left"></i></button>
+            <h3 id="calMonthYear">Month Year</h3>
+            <button onclick="changeMonth(1)"><i class="fa-solid fa-chevron-right"></i></button>
+          </div>
+          <div class="cal-days-header">
+            <span>Sun</span><span>Mon</span><span>Tue</span><span>Wed</span><span>Thu</span><span>Fri</span><span>Sat</span>
+          </div>
+          <div class="cal-grid" id="calGrid"></div>
+          <!-- Legend -->
+          <div class="cal-legend">
+            <span class="leg-item"><span class="leg-dot holiday"></span>Holiday</span>
+            <span class="leg-item"><span class="leg-dot exam"></span>Exam</span>
+            <span class="leg-item"><span class="leg-dot ia"></span>IA</span>
+            <span class="leg-item"><span class="leg-dot event"></span>Event</span>
+            <span class="leg-item"><span class="leg-dot today"></span>Today</span>
+          </div>
+        </div>
+
+        <!-- Events Sidebar -->
+        <div class="cal-sidebar">
+          <h4 class="cal-sidebar-title">Upcoming Schedule</h4>
+          <div class="cal-filter-tabs">
+            <button class="cal-ftab active" onclick="filterCalEvents('all',this)">All</button>
+            <button class="cal-ftab" onclick="filterCalEvents('holiday',this)">Holidays</button>
+            <button class="cal-ftab" onclick="filterCalEvents('exam',this)">Exams</button>
+            <button class="cal-ftab" onclick="filterCalEvents('ia',this)">IA</button>
+            <button class="cal-ftab" onclick="filterCalEvents('event',this)">Events</button>
+          </div>
+          <div class="cal-events-list" id="calEventsList"></div>
+        </div>
+      </div>
+
+    </div>
+  </main>
+
+  <script src="js/data.js"></script>
+  <script src="js/auth.js"></script>
+  <script src="js/calendar.js"></script>
+</body>
+</html>
